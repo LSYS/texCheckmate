@@ -2,12 +2,14 @@ on:
   push:
     branches:
       - main
+      
+  workflow_dispatch:  # Allows manual triggering from the GitHub UI
 
 name: "Trigger: Push action"
 
 jobs:
   shellcheck:
-    name: Shellcheck
+    name: Shellcheck - style
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
