@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# Variables
 SRC_TEX="paper.tex"
-VERBOSE=0
 LOG_DIR="./logs"
 LOG_FILE="$LOG_DIR/acronyms.log"
 
@@ -24,13 +22,12 @@ acronyms() {
   # Output file marker
   echo '===' "$file" '===' | tee -a "$LOG_FILE"
   
-  echo '===' ${file} '==='
-  cat ${file} | 
+  echo '===' "$file" '==='
+  cat "$file" | 
   # Process the file content and log results
   # =======================================================================
   # Ignore lines relating to environment
   sed -n '/\\begin{document}/,$p' |  # Skip lines until \begin{document}
-  # grep -Ev '^(\\newcommand|\\setcounter|\\vspace|\\hspace|\\usepackage|\\setlength)'
   grep -Ev '^\\newcommand' | # Ignore lines starting with \newcommand (e.g., \newcommand{\nc}{})
   grep -Ev '^\\setcounter' | # Ignore lines starting with \setcounter
   grep -Ev '^\\vspace' | 
@@ -38,7 +35,7 @@ acronyms() {
   grep -Ev '^\\usepackage' | 
   grep -Ev '^\\setlength' | 
   # =======================================================================
-    # Ignore math, tables, figures
+  # Ignore math, tables, figures
   sed '/begin{equation}/,/end{equation}/d' | sed '/begin{equation\*}/,/end{equation\*}/d' | sed '/begin{align}/,/end{align}/d' | sed '/begin{align\*}/,/end{align\*}/d' | #Remove equation environments
   sed 's/\\input{[A-Za-z0-9_\/\.]*}//g' | # Drop input files that might contain numbers
   grep -v 'includegraphics' | #Drop lines that are graphics filepaths or numbers setting the figure size
@@ -61,6 +58,6 @@ acronyms() {
 }
 
 # Main loop to find and process all files named $SRC_TEX
-for file in $(find -name "$SRC_TEX"); do
+find . -name "$SRC_TEX" | while IFS= read -r file; do
   acronyms "$file"
 done
