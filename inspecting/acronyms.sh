@@ -9,11 +9,6 @@ LOG_FILE="$LOG_DIR/acronyms.log"
 # Ensure the log directory exists
 mkdir -p "$LOG_DIR"
 
-# Enable verbose mode if the first argument is --verbose
-if [[ "$1" == "--verbose" ]]; then
-  VERBOSE=1
-fi
-
 # Function to process files, renamed to "acronyms"
 acronyms() {
   local file="$1"
@@ -24,10 +19,7 @@ acronyms() {
     return 1
   fi
 
-  # Optional verbose output
-  if [[ $VERBOSE -eq 1 ]]; then
-    echo "Processing file: $file" | tee -a "$LOG_FILE"
-  fi
+  echo "Processing file: $file" | tee -a "$LOG_FILE"
   
   # Output file marker
   echo '===' "$file" '===' | tee -a "$LOG_FILE"
