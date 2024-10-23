@@ -30,6 +30,14 @@ hardcodednumbers: ## Find hardcoded numbers
 	chmod +x $(HARDCODEDNUMBERS_SRC)
 	$(HARDCODEDNUMBERS_SRC)
 
+LINKCHECKER_SRC = ./inspecting/linkchecker.sh
+.PHONY: linkchecker
+linkchecker: ## Check URLs
+	@echo "==> $@"
+	@echo "Check that URLs work"
+	dos2unix $(LINKCHECKER_SRC)
+	chmod +x $(LINKCHECKER_SRC)
+	$(LINKCHECKER_SRC)
 
 .PHONY: duplicated_labels
 duplicated_labels: ## Check for duplicated labels
@@ -52,14 +60,6 @@ unreferenced_labels: ## Check for label referencing
 	@echo "Check for unreferenced labels"
 	dos2unix $(UNREFERENCED_LABELS_SRC)
 	-$(UNREFERENCED_LABELS_SRC)
-
-LINKCHECKER_SRC = ./inspecting/linkchecker.sh
-.PHONY: linkchecker
-linkchecker: ## Check URLs
-	@echo "==> $@"
-	@echo "Check that URLs work"
-	dos2unix $(LINKCHECKER_SRC)
-	$(LINKCHECKER_SRC)	
 
 .PHONY: textidote
 textidote: ## Check with textidote
