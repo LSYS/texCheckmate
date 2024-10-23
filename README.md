@@ -6,7 +6,7 @@ Most are taken from Jonathan Dingel's [https://github.com/jdingel/projecttemplat
 ## Use with `Make`
 Comes with a `Makefile`, with quick CLI access to the utilities, some of which calling scripts from [https://github.com/LSYS/texCheckmate/tree/main/inspecting](https://github.com/LSYS/texCheckmate/tree/main/inspecting). 
 
-```text
+```console
 acronyms         Find and tally acronyms
 aynumeric        Change author-year to numeric citation
 cleantex         Clean aux output files in LaTex compilation
