@@ -44,5 +44,10 @@ unzip main.zip -d _contents
 mv _contents/* .
 ```
 
+4. Clean up
+
+   ```bash
+   rm -r _contents
+   ```
 
 
