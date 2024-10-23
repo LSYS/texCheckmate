@@ -11,7 +11,6 @@ wordcount: ## Wordcount via texcount
 	dos2unix $(WORDCOUNT_SCR)
 	$(WORDCOUNT_SCR)
 
-
 ACRONYMS_SRC = ./inspecting/acronyms.sh
 .PHONY: acronyms
 acronyms: ## Find and tally acronyms
@@ -67,13 +66,13 @@ textidote: ./inspecting/textidote_dict.txt
 	@echo "Check doc with textidote"
 	-textidote --check en --dict $< --output html $(SRC_TEX) > inspecting/logs/textidote.html
 
-
-UNREFERENCED_LABELS_SRC = ./inspecting/unreferenced_labels.sh
+UNREFERENCED_LABELS_SRC = ./inspecting/unreferenced-labels.sh
 .PHONY: unreferenced_labels
 unreferenced_labels: ## Check for label referencing
 	@echo "==> $@"
 	@echo "Check for unreferenced labels"
 	dos2unix $(UNREFERENCED_LABELS_SRC)
+	chmod +x $(UNREFERENCED_LABELS_SRC)
 	-$(UNREFERENCED_LABELS_SRC)
 
 .PHONY: inspect
