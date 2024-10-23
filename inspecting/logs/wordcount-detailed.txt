@@ -1,0 +1,16 @@
+
+File: paper.tex
+Encoding: ascii
+Words in text: 241
+Words in headers: 1
+Words outside text (captions, etc.): 16
+Number of headers: 1
+Number of floats/tables/figures: 2
+Number of math inlines: 0
+Number of math displayed: 0
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  0+0+0 (0/0/0/0) _top_
+  241+1+16 (1/2/0/0) Section: Introduction}\label{sec:intro
+
+(errors:2)

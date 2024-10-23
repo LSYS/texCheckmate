@@ -4,11 +4,13 @@
 #==============================================================================
 # Inspecting
 #==============================================================================
+WORDCOUNT_SCR := ./inspecting/wordcount.sh
 .PHONY: wordcount
 wordcount: ## Wordcount via texcount
 	@echo "==> $@"
 	@echo "Check word count using texcount"
 	dos2unix $(WORDCOUNT_SCR)
+	chmod +x $(WORDCOUNT_SCR)
 	$(WORDCOUNT_SCR)
 
 ACRONYMS_SRC = ./inspecting/acronyms.sh
@@ -140,7 +142,6 @@ cleantex: ## Clean aux output files in LaTex compilation
 #==============================================================================
 # Build the paper
 #==============================================================================
-WORDCOUNT_SCR := ./inspecting/wordcount.sh
 
 paper.pdf: $(SRC_TEX) $(SRC_EXHIB)
 	@echo "+ $@"
