@@ -21,6 +21,16 @@ acronyms: ## Find and tally acronyms
 	chmod +x $(ACRONYMS_SRC)
 	$(ACRONYMS_SRC)
 
+HARDCODEDNUMBERS_SRC = ./inspecting/hardcoded-numbers.sh
+.PHONY: hardcodednumbers
+hardcodednumbers: ## Find hardcoded numbers
+	@echo "==> $@"
+	@echo "Check for hardcoded numbers"
+	dos2unix $(HARDCODEDNUMBERS_SRC)
+	chmod +x $(HARDCODEDNUMBERS_SRC)
+	$(HARDCODEDNUMBERS_SRC)
+
+
 .PHONY: duplicated_labels
 duplicated_labels: ## Check for duplicated labels
 	@echo "==> $@"
@@ -42,14 +52,6 @@ unreferenced_labels: ## Check for label referencing
 	@echo "Check for unreferenced labels"
 	dos2unix $(UNREFERENCED_LABELS_SRC)
 	-$(UNREFERENCED_LABELS_SRC)
-
-HARDCODEDNUMBERS_SRC = ./inspecting/hardcodednumbers.sh
-.PHONY: hardcodednumbers
-hardcodednumbers: ## Find hardcoded numbers
-	@echo "==> $@"
-	@echo "Check for hardcoded numbers"
-	dos2unix $(HARDCODEDNUMBERS_SRC)
-	$(HARDCODEDNUMBERS_SRC)
 
 LINKCHECKER_SRC = ./inspecting/linkchecker.sh
 .PHONY: linkchecker
