@@ -97,6 +97,17 @@ aynumeric: ## Change author-year to numeric citation
 	chmod +x $(AY2NUMERIC_SRC)
 	$(AY2NUMERIC_SRC)
 
+
+NUMERICAY_SRC = ./inspecting/numeric2ay.sh
+.PHONY: numericay
+numericay: ## Change author-year to numeric citation
+	@echo "==> $@"
+	@echo "Change numeric to author-year citations"
+	dos2unix $(NUMERICAY_SRC)
+	chmod +x $(NUMERICAY_SRC)
+	$(NUMERICAY_SRC)
+
+
 #==============================================================================
 # Define tex sources
 #==============================================================================
