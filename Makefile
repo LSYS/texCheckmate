@@ -2,16 +2,6 @@
 .DEFAULT_GOAL := help
 
 #==============================================================================
-# Clean/purge aux files
-#==============================================================================
-TEXAUX := *.aux *.bbl *.fdb_latexmk *.fls *.log *.nav *.out *.snm *.synctex.gz *.toc
-.PHONY: cleantex
-cleantex: ## Clean aux output files in LaTex compilation
-	@echo "+ $@"
-	rm -f $(TEXAUX)
-
-
-#==============================================================================
 # Inspecting
 #==============================================================================
 .PHONY: wordcount
@@ -93,6 +83,87 @@ inspect: duplicated_labels \
          textidote \
          dueto \
          wordcount
+
+
+#==============================================================================
+# Additional utilities
+#==============================================================================
+AY2NUMERIC_SRC = ./inspecting/ay2numeric.sh
+.PHONY: aynumeric
+aynumeric: ## Change author-year to numeric citation
+	@echo "==> $@"
+	@echo "Change author-year to numeric citations"
+	dos2unix $(AY2NUMERIC_SRC)
+	chmod +x $(AY2NUMERIC_SRC)
+	$(AY2NUMERIC_SRC)
+
+#==============================================================================
+# Define tex sources
+#==============================================================================
+# Define sources and outut
+SRC_TEX := paper.tex
+SRC_EXHIB := $(wildcard figures/* tables/*.tex)
+OUT := $(SRC_TEX:%.tex=%.pdf)
+
+.PHONY: list
+list: ## List manifest
+	@echo "=> Src TeX files:"
+	@echo "   $(SRC_TEX)"
+	@echo "=> Output (to make):"
+	@echo "   $(OUT)"
+	@echo "=> Exhibits in ms:"
+	@echo "   $(SRC_EXHIB)"
+
+#==============================================================================
+# Clean/purge aux files
+#==============================================================================
+TEXAUX := *.aux *.bbl *.fdb_latexmk *.fls *.log *.nav *.out *.snm *.synctex.gz *.toc
+.PHONY: cleantex
+cleantex: ## Clean aux output files in LaTex compilation
+	@echo "+ $@"
+	rm -f $(TEXAUX)
+
+#==============================================================================
+# Build the paper
+#==============================================================================
+WORDCOUNT_SCR := ./inspecting/wordcount.sh
+
+paper.pdf: $(SRC_TEX) $(SRC_EXHIB)
+	@echo "+ $@"
+	rm -f $@ && latexmk -pdf $(<F) && latexmk -c
+
+.PHONY: paperc
+paperc: ## Make paper and purge aux
+paperc: $(SRC_TEX) $(SRC_EXHIB)
+	@echo "+ $@"
+	rm -f $(OUT) 
+	latexmk -pdf $(<F)
+	ps2pdf -dPDFSETTINGS=/screen $(OUT) _build/main-compressed.pdf
+	latexmk -c
+	rm -f $(OUT)
+	chmod +x $(WORDCOUNT_SCR)
+	dos2unix $(WORDCOUNT_SCR)
+	$(WORDCOUNT_SCR)
+# 	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=_build/main-compressed-optimized.pdf _build/main-compressed.pdf
+# 	rm _build/main-compressed.pdf
+# 	mv _build/main-compressed-opti
+#https://web.mit.edu/ghostscript/www/Ps2pdf.htm
+# /screen selects low-resolution output similar to the Acrobat Distiller "Screen Optimized" setting.
+# /printer selects output similar to the Acrobat Distiller "Print Optimized" setting.
+# /prepress selects output similar to Acrobat Distiller "Prepress Optimized" setting.
+# /default selects output intended to be useful across a wide variety of uses, possibly at the expense of a larger output file.
+
+.PHONY: paper
+paper: ## Make paper (useful if still working w/ TexStudio)
+paper: $(SRC_TEX) $(SRC_EXHIB)
+	@echo "+ $@"
+	rm -f $(OUT)gs ,
+	latexmk -pdf $(<F)
+	ps2pdf -dPDFSETTINGS=/screen $(OUT) _build/main-compressed.pdf
+# 	chmod +x $(WORDCOUNT_SCR)
+# 	dos2unix $(WORDCOUNT_SCR)
+# 	$(WORDCOUNT_SCR)
+	
 
 #==============================================================================
 # Help

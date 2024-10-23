@@ -55,6 +55,7 @@ acronyms() {
   sed 's/\\citealt{[^}]*}//g' |  # Drop citations with \citealt{} that may contain numbers
   sed 's/\\citep{[^}]*}//g' |  # This seems to work for \citep and not line 16..
   sed 's/\\citet{[^}]*}//g' |  # This seems to work for \citep and not line 16..
+  # =======================================================================
   grep -wo "[A-Z]\+\{2,20\}" | sort | uniq -c | sort -gr |
   tee -a "$LOG_FILE"  # Log results to file
 }
