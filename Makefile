@@ -39,19 +39,21 @@ linkchecker: ## Check URLs
 	chmod +x $(LINKCHECKER_SRC)
 	$(LINKCHECKER_SRC)
 
+REPEATED_STRINGS_SRC = ./inspecting/repeated-strings.sh
+.PHONY: repeated_strings
+repeated_strings: ## Check for repeated words
+	@echo "==> $@"
+	@echo "Check for repeated words (e.g. 'the the table shows...')"
+	dos2unix $(REPEATED_STRINGS_SRC)
+	chmod +x $(REPEATED_STRINGS_SRC)
+	-$(REPEATED_STRINGS_SRC)
+
 .PHONY: duplicated_labels
 duplicated_labels: ## Check for duplicated labels
 	@echo "==> $@"
 	@echo "Check for duplicated labels"
 	grep -o '\\label{[^}]*}' $(SRC_TEX) | sort | uniq -cd
 
-REPEATED_STRINGS_SRC = ./inspecting/repeatedstrings.sh
-.PHONY: repeated_strings
-repeated_strings: ## Check for repeated words
-	@echo "==> $@"
-	@echo "Check for repeated words (e.g. 'the the table shows...')"
-	dos2unix $(REPEATED_STRINGS_SRC)
-	-$(REPEATED_STRINGS_SRC)
 
 UNREFERENCED_LABELS_SRC = ./inspecting/unreferenced_labels.sh
 .PHONY: unreferenced_labels

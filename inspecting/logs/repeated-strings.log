@@ -1,0 +1,6 @@
+Repeated unigrams:
+187:Here is a repeated string string.
+Repeated bigrams:
+189:Here is a repeated bigram: abc def abc def.
+Repeated trigrams:
+191:Here is a repeated trigram: aa bb cc aa bb cc.
