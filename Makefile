@@ -48,6 +48,13 @@ repeated_strings: ## Check for repeated words
 	chmod +x $(REPEATED_STRINGS_SRC)
 	-$(REPEATED_STRINGS_SRC)
 
+.PHONY: textidote
+textidote: ## Check with textidote
+textidote: ./inspecting/textidote_dict.txt
+	@echo "==> $@"
+	@echo "Check doc with textidote"
+	-textidote --check en --dict $< --output html $(SRC_TEX) > inspecting/logs/textidote.html
+
 .PHONY: duplicated_labels
 duplicated_labels: ## Check for duplicated labels
 	@echo "==> $@"
@@ -62,13 +69,6 @@ unreferenced_labels: ## Check for label referencing
 	@echo "Check for unreferenced labels"
 	dos2unix $(UNREFERENCED_LABELS_SRC)
 	-$(UNREFERENCED_LABELS_SRC)
-
-.PHONY: textidote
-textidote: ## Check with textidote
-textidote: ./inspecting/textidote_dict.txt
-	@echo "==> $@"
-	@echo "Check doc with textidote"
-	-textidote --check en --dict $< --output html $(SRC_TEX) > inspecting/textidote.html
 
 .PHONY: dueto
 dueto: ## Find "due to"s; Did you mean "because of", "owing to", or "from"?
