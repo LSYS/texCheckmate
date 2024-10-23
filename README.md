@@ -36,23 +36,33 @@ wget -v https://github.com/LSYS/texCheckmate/archive/refs/heads/main.zip
 2. Unzip
 
 ```bash
-unzip -j main.zip -d _contents
+unzip main.zip
 ```
 
 3. Remove the `README.md`
 ```bash
-rm _contents/README.md
+rm texCheckmate-main/README.md
 ```
 
 4. Move to ./
 ```bash
-mv _contents/* .
+mv texCheckmate-main/* .
 ```
 
 5. Clean up
 
 ```bash
-rm -r _contents
+rm -r texCheckmate-main
+rm main.zip
+```
+
+All together:
+```bash
+wget -v https://github.com/LSYS/texCheckmate/archive/refs/heads/main.zip
+unzip main.zip
+rm texCheckmate-main/README.md
+mv texCheckmate-main/* .
+rm -r texCheckmate-main
 rm main.zip
 ```
 
