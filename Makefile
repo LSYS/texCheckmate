@@ -39,6 +39,12 @@ linkchecker: ## Check URLs
 	chmod +x $(LINKCHECKER_SRC)
 	$(LINKCHECKER_SRC)
 
+.PHONY: duplicated_labels
+duplicated_labels: ## Check for duplicated labels
+	@echo "==> $@"
+	@echo "Check for duplicated labels"
+	grep -o '\\label{[^}]*}' $(SRC_TEX) | sort | uniq -cd | tee ./inspecting/logs/duplicated-labels.log
+
 REPEATED_STRINGS_SRC = ./inspecting/repeated-strings.sh
 .PHONY: repeated_strings
 repeated_strings: ## Check for repeated words
@@ -54,12 +60,6 @@ textidote: ./inspecting/textidote_dict.txt
 	@echo "==> $@"
 	@echo "Check doc with textidote"
 	-textidote --check en --dict $< --output html $(SRC_TEX) > inspecting/logs/textidote.html
-
-.PHONY: duplicated_labels
-duplicated_labels: ## Check for duplicated labels
-	@echo "==> $@"
-	@echo "Check for duplicated labels"
-	grep -o '\\label{[^}]*}' $(SRC_TEX) | sort | uniq -cd
 
 
 UNREFERENCED_LABELS_SRC = ./inspecting/unreferenced_labels.sh
