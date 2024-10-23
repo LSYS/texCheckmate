@@ -21,6 +21,18 @@ acronyms: ## Find and tally acronyms
 	chmod +x $(ACRONYMS_SRC)
 	$(ACRONYMS_SRC)
 
+.PHONY: dueto
+dueto: ## Find "due to"s; Did you mean "because of", "owing to", or "from"?
+	@echo "==> $@"
+	@echo "Find all the 'due to's in writing"
+	grep -n "due to" $(SRC_TEX) > inspecting/logs/duetos.log
+
+.PHONY: duplicated_labels
+duplicated_labels: ## Check for duplicated labels
+	@echo "==> $@"
+	@echo "Check for duplicated labels"
+	grep -o '\\label{[^}]*}' $(SRC_TEX) | sort | uniq -cd | tee ./inspecting/logs/duplicated-labels.log
+
 HARDCODEDNUMBERS_SRC = ./inspecting/hardcoded-numbers.sh
 .PHONY: hardcodednumbers
 hardcodednumbers: ## Find hardcoded numbers
@@ -38,12 +50,6 @@ linkchecker: ## Check URLs
 	dos2unix $(LINKCHECKER_SRC)
 	chmod +x $(LINKCHECKER_SRC)
 	$(LINKCHECKER_SRC)
-
-.PHONY: duplicated_labels
-duplicated_labels: ## Check for duplicated labels
-	@echo "==> $@"
-	@echo "Check for duplicated labels"
-	grep -o '\\label{[^}]*}' $(SRC_TEX) | sort | uniq -cd | tee ./inspecting/logs/duplicated-labels.log
 
 REPEATED_STRINGS_SRC = ./inspecting/repeated-strings.sh
 .PHONY: repeated_strings
@@ -69,12 +75,6 @@ unreferenced_labels: ## Check for label referencing
 	@echo "Check for unreferenced labels"
 	dos2unix $(UNREFERENCED_LABELS_SRC)
 	-$(UNREFERENCED_LABELS_SRC)
-
-.PHONY: dueto
-dueto: ## Find "due to"s; Did you mean "because of", "owing to", or "from"?
-	@echo "==> $@"
-	@echo "Find all the 'due to's in writing"
-	grep -n "due to" $(SRC_TEX)
 
 .PHONY: inspect
 inspect: ## Do all inspections of manuscript
