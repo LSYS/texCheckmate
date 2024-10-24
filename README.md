@@ -38,9 +38,10 @@ wget -v https://github.com/LSYS/texCheckmate/archive/refs/heads/main.zip
 unzip main.zip
 ```
 
-3. Remove the `README.md`
+3. Remove the `README.md` & repo CI
 ```bash
 rm texCheckmate-main/README.md
+rm -r texCheckmate-main/.github
 ```
 
 4. Move to ./
@@ -60,6 +61,7 @@ All together:
 wget -v https://github.com/LSYS/texCheckmate/archive/refs/heads/main.zip
 unzip main.zip
 rm texCheckmate-main/README.md
+rm -r texCheckmate-main/.github
 mv texCheckmate-main/* .
 rm -r texCheckmate-main
 rm main.zip
