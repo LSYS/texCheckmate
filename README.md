@@ -1,10 +1,10 @@
 # texCheckmate
-Shell utilities to inspect a LaTeX manuscript. 
+Shell and Make utilities to inspect a LaTeX manuscript. 
 
 Most are taken from Jonathan Dingel's logbook `Makefile`: [https://github.com/jdingel/projecttemplate/blob/master/paper/reviewing/Makefile](https://github.com/jdingel/projecttemplate/blob/master/paper/reviewing/Makefile).
 
 ## Use with `Make`
-Comes with a `Makefile`, with quick CLI access to the utilities, some of which calling scripts from [https://github.com/LSYS/texCheckmate/tree/main/inspecting](https://github.com/LSYS/texCheckmate/tree/main/inspecting). 
+Comes with a `Makefile`, with quick CLI access to the utilities, some of which call scripts from [https://github.com/LSYS/texCheckmate/tree/main/inspecting](https://github.com/LSYS/texCheckmate/tree/main/inspecting). 
 
 ```console
 acronyms         Find and tally acronyms
