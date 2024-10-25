@@ -2,7 +2,13 @@
 ---> Retrieving URL(s) in \url{}:
 ---> Retrieving all other URLs
 Checking URL: fakelink.com
+http://fakelink.com/:
+Remote file does not exist -- broken link!!!
 Checking URL: google.com
+2024-10-25 16:55:11 URL: http://www.google.com/ 200 OK
 Checking URL: https://tex.stackexchange.com/a/183735/1340
+2024-10-25 16:55:12 URL: https://tex.stackexchange.com/questions/183702/formatting-back-references-in-bibliography-bibtex/183735 200 OK
 Checking URL: https://tex.stackexchange.com/a/70953/1340
+2024-10-25 16:55:14 URL: https://tex.stackexchange.com/questions/70929/adding-text-between-bibliography-header-and-the-first-bibitem/70953 200 OK
 Checking URL: https://tex.stackexchange.com/questions/611786/misplaced-noalign-because-input-before-booktabs-rule
+2024-10-25 16:55:15 URL: https://tex.stackexchange.com/questions/611786/misplaced-noalign-because-input-before-booktabs-rule 200 OK
