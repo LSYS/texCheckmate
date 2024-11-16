@@ -3,6 +3,8 @@ Shell and Make utilities to inspect a LaTeX manuscript.
 
 Most are taken from Jonathan Dingel's logbook `Makefile`: [https://github.com/jdingel/projecttemplate/blob/master/paper/reviewing/Makefile](https://github.com/jdingel/projecttemplate/blob/master/paper/reviewing/Makefile).
 
+See this [note](https://www.lucasshen.com/notes/texCheckmate/texCheckmate) for more details.
+
 ## Assumptions
 * The manuscript is `./main.tex` (if not, the scripts need to be changed).
 
