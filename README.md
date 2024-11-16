@@ -26,7 +26,14 @@ unreferenced_labels Check for label referencing
 wordcount        Wordcount via texcount
 ```
 
-## Porting
+## Cloning
+```bash
+git clone https://github.com/LSYS/texCheckmate.git
+mv texCheckmate/* .
+rm -r texCheckmate
+```
+
+## Porting (w/o Git)
 To download the utilities without cloning:
 
 1. Download the zipped repo
@@ -70,12 +77,6 @@ rm -r texCheckmate-main
 rm main.zip
 ```
 
-## Cloning
-```bash
-git clone https://github.com/LSYS/texCheckmate.git
-mv texCheckmate/* .
-rm -r texCheckmate
-```
 
 
 
