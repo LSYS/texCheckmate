@@ -1,7 +1,18 @@
 # texCheckmate
-Shell and Make utilities to inspect a LaTeX manuscript. 
-
-Most are taken from Jonathan Dingel's logbook `Makefile`: [https://github.com/jdingel/projecttemplate/blob/master/paper/reviewing/Makefile](https://github.com/jdingel/projecttemplate/blob/master/paper/reviewing/Makefile).
+Shell and Make utilities to inspect a LaTeX manuscript.
+            <ul style="font-size: 12px;">
+              <li>Word count via <a class="text-link" href="https://app.uio.no/ifi/texcount/" target="_blank">TeXcount</a> (excludes bibliography, headers, captions, etc.)</li>
+              <li>Flags <tt>\label{}</tt>s declared but never used (e.g., via <tt>\ref</tt>)</li>
+              <li>Flags duplicated <tt>\label{}</tt> entries</li>
+              <li>Checks that all URLs in the manuscript are live</li>
+              <li>Flags repeated words, bigrams, trigrams (e.g., "the the")</li>
+              <li>Finds lines with hardcoded numbers for proofing</li>
+              <li>Lists acronyms used, with frequency counts</li>
+              <li>Runs <a class="text-link" href="https://github.com/sylvainhalle/textidote" target="_blank">Textidote</a> for grammar and LaTeX style checks (via LanguageTool)</li>
+              <li>Swaps citation style between author-year and numeric (and back)</li>
+            </ul>
+            
+Adapted from Jonathan Dingel's logbook `Makefile`: [https://github.com/jdingel/projecttemplate/blob/master/paper/reviewing/Makefile](https://github.com/jdingel/projecttemplate/blob/master/paper/reviewing/Makefile).
 
 See this [note](https://www.lucasshen.com/notes/texCheckmate/texCheckmate) for more details.
 
